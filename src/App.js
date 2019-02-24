@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.scss';
-import { connect } from './api';
+import { connect, send } from './api';
 import Modal from 'react-modal';
 import Questionnaire from './components/Questionnaire';
 import Header from './components/Header'
@@ -23,19 +23,23 @@ class App extends Component {
     this.afterOpenModal = this.afterOpenModal.bind(this)
     this.handleNameChange = this.handleNameChange.bind(this)
     this.handleLangChange = this.handleLangChange.bind(this);
-    this.handleTargetLangChange = this.handleTargetLangChange.bind(this)
-    connect(message => {
-      // if (!!message.user && (message.user == this.state.user)) {
-      //   message['local'] = false
-      // } else {
-      //   message['local'] = true
-      // }
+
+    connect((message) => {
       this.setState((state) => {
         console.log(this.state.messages)
         return {
           messages: [...state.messages, message]
         }
       })
+    }, (message) => {
+      console.log('message')
+    }, (message) => {
+      console.log(message)
+      if (message.username !== this.state.user) {
+        this.setState({
+          targetLanguage: message.preferredLanguage
+        })
+      }
     })
   }
 
@@ -62,18 +66,15 @@ class App extends Component {
     })
   }
 
-  handleTargetLangChange(event) {
-    this.setState({
-      targetLanguage: event.target.value
-    })
-  }
-
   handleLangChange(event) {
+    send({
+      preferredLanguage: event.target.value,
+      username: this.state.user
+    }, 'fred')
     this.setState({
       language: event.target.value
     })
   }
-
 
   openModal() {
     this.setState({
@@ -95,7 +96,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Header targetChange={this.handleTargetLangChange} langChange={this.handleLangChange} nameChange={this.handleNameChange} onClick={this.openModal}></Header>
+        <Header langChange={this.handleLangChange} nameChange={this.handleNameChange} onClick={this.openModal}></Header>
         <Modal
           className='questionnaire-modal'
           isOpen={this.state.modalIsOpen}
