@@ -7,6 +7,20 @@ $backgroundColor: #282c34;
   box-sizing: border-box;
 }
 
+body, html {
+  height: 100vh;
+}
+
+.App, #root {
+  height: 100%;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+
+}
+
 .center {
   margin: 0 auto;
 }
@@ -44,8 +58,80 @@ $backgroundColor: #282c34;
   color: white;
 }
 
-h1, h2, h3, h4, h5, h6, p {
+.messaging {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+
+  .chat-container {
+    flex: 2;
+  }
+  .messaging-right {
+    flex: 1;
+
+    .conversation {
+      transition: all .2s ease;
+      padding: 20px;
+      cursor: pointer;
+      &:hover {
+        background: #f8f8f8;
+      }
+      &:focus {
+        background: lighten($backgroundColor, 10);
+      }
+      h3 {
+        margin-bottom: 10px;
+      }
+    }
+    .conversation.active {
+      background: lighten($backgroundColor, 30);
+      color: #f8f8f8;
+    }
+  }
+}
+
+.chat-container {
+  display: flex;
+  flex-direction: column;
+  background: lighten($backgroundColor, 10);
+  height: 100%;
   
+  .messages {
+    flex: 1;
+  }
+  .compose-message {
+    padding: 0 25px;
+    overflow: auto;
+
+    form {
+      margin-top: 50px;
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 15px;
+
+      input {
+        line-height: 45px;
+        font-size: 22px;
+        padding: 0 10px;
+        outline: none;
+        border: none;
+        border-radius: 5px;
+        flex: 1;
+        box-shadow: 1px 2px 15px 0 rgba(lighten($backgroundColor, 10), 0.5);
+        margin-right: 20px;
+        box-shadow: inset 0px 0px 8px rgba(lighten($backgroundColor, 10), 0.5);
+      }
+    }
+  }
+  
+}
+
+.chatMessage {
+  margin-bottom: 10px;
+  width: 100%;
 }
 
 @import 'modal'

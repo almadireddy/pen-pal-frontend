@@ -4,6 +4,7 @@ import { connect } from './api';
 import Modal from 'react-modal';
 import Questionnaire from './components/Questionnaire';
 import Header from './components/Header'
+import Body from './components/Body'
 
 class App extends Component {
   constructor(props) {
@@ -11,15 +12,21 @@ class App extends Component {
     this.state = {
       doingQuestions: true,
       questions: null,
+      messages: [],
+      targetLanguage: 'es'
     }
 
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this)
     this.afterOpenModal = this.afterOpenModal.bind(this)
     
-    // connect(message => {
-    //   console.log(message)
-    // })
+    connect(message => {
+      this.setState((state) => {
+        return {
+          messages: [...state.messages, message]
+        }
+      })
+    })
   }
 
   async componentDidMount() {
@@ -69,6 +76,7 @@ class App extends Component {
           <Questionnaire questions={this.state.questions}></Questionnaire>
           <button className='center action-on-dark' onClick={this.closeModal}>Save</button>
         </Modal>
+        <Body language={this.state.targetLanguage} messages={this.state.messages}></Body>
       </div>
     )
   }
