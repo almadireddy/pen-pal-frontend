@@ -10,7 +10,7 @@ export default class ChatMessage extends Component {
     return(
       <div className={classes}>
         <p className='message-text'>{this.props.text}</p>
-        <p className='message-lang'>{this.props.lang}</p>
+        <p className='message-lang'>{this.props.lang}-<span className='username'>{this.props.username}</span></p>
       </div>
     )
   }

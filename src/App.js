@@ -14,6 +14,7 @@ class App extends Component {
       questions: null,
       messages: [],
       targetLanguage: 'es',
+      language: "en",
       user: "Al"
     }
 
@@ -22,6 +23,7 @@ class App extends Component {
     this.afterOpenModal = this.afterOpenModal.bind(this)
     this.handleNameChange = this.handleNameChange.bind(this)
     this.handleLangChange = this.handleLangChange.bind(this);
+    this.handleTargetLangChange = this.handleTargetLangChange.bind(this)
     connect(message => {
       // if (!!message.user && (message.user == this.state.user)) {
       //   message['local'] = false
@@ -59,11 +61,18 @@ class App extends Component {
     })
   }
 
-  handleLangChange(event) {
+  handleTargetLangChange(event) {
     this.setState({
       targetLanguage: event.target.value
     })
   }
+
+  handleLangChange(event) {
+    this.setState({
+      language: event.target.value
+    })
+  }
+
 
   openModal() {
     this.setState({
@@ -85,7 +94,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Header langChange={this.handleLangChange} nameChange={this.handleNameChange} onClick={this.openModal}></Header>
+        <Header targetChange={this.handleTargetLangChange} langChange={this.handleLangChange} nameChange={this.handleNameChange} onClick={this.openModal}></Header>
         <Modal
           className='questionnaire-modal'
           isOpen={this.state.modalIsOpen}
@@ -95,7 +104,7 @@ class App extends Component {
           <Questionnaire questions={this.state.questions}></Questionnaire>
           <button className='center action-on-dark' onClick={this.closeModal}>Save</button>
         </Modal>
-        <Body language={this.state.targetLanguage} messages={this.state.messages}></Body>
+        <Body username={this.state.user} language={this.state.language} targetLanguage={this.state.targetLanguage} messages={this.state.messages}></Body>
       </div>
     )
   }

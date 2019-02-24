@@ -20,8 +20,10 @@ export default class ChatContainer extends Component {
   handleSubmit(event) {
     event.preventDefault();
     send({
-      lang: this.props.language,
-      text: this.state.newMessage
+      targetLang: this.props.targetLanguage,
+      text: this.state.newMessage,
+      username: this.props.username,
+      lang: this.props.language
     })
     this.setState({
       newMessage: ""
@@ -33,7 +35,11 @@ export default class ChatContainer extends Component {
       <div className='chat-container'>
         <div className='messages'>
           {!!this.props.messages && this.props.messages.map((chat) => (
-            <ChatMessage lang={chat.language} text={chat.translatedText} local={chat.local}></ChatMessage>
+            Object.keys(chat).map((key) => (
+              (key === this.props.language &&
+                (<ChatMessage username={chat.username} lang={chat[key].language} text={chat[key].message} local={chat.username == this.props.username ? true : false}></ChatMessage>) 
+              )
+            ))
           ))}
         </div>
         <div className='compose-message'>

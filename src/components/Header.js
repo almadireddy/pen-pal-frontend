@@ -13,6 +13,7 @@ export default class Header extends Component {
         <div>
           <input onChange={this.props.nameChange} placeholder='your name'></input>
           <input onChange={this.props.langChange} placeholder='your language'></input>
+          <input onChange={this.props.targetChange} placeholder='chat language'></input>
           <button onClick={this.props.onClick} className='action-on-dark'>Questions</button>
         </div>
       </header>

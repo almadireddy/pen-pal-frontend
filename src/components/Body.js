@@ -5,7 +5,7 @@ export default class Body extends Component {
   render() {
     return(
       <div className='messaging'>
-        <ChatContainer language={this.props.language} messages={this.props.messages}></ChatContainer>
+        <ChatContainer username={this.props.username} language={this.props.language} targetLanguage={this.props.targetLanguage} messages={this.props.messages}></ChatContainer>
         <div className='messaging-right'>
           <div className='conversation active'>
             <div className='convo-info'>
