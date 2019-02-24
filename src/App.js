@@ -3,6 +3,7 @@ import './App.scss';
 import { connect } from './api';
 import Modal from 'react-modal';
 import CheckboxContainer from './components/CheckboxContainer';
+import Questionnaire from './components/Questionnaire';
 
 
 class App extends Component {
@@ -60,28 +61,20 @@ class App extends Component {
     return (
       <div className="App">
         <header className='app-header'>
-          <h1 className="app-title">Welcome to international sexting!</h1>
+          <div>
+            <h1 className="app-title">Welcome to international sexting!</h1>
+          </div>
+          <div>
+            <button onClick={this.openModal} className='action-on-dark'>Questions</button>
+          </div>
         </header>
-        <button onClick={this.openModal}>Quesitons</button>
         <Modal
           isOpen={this.state.modalIsOpen}
           onAfterOpen={this.afterOpenModal}
           onRequestClose={this.closeModal}
           contentLabel="Example Modal"
         >
-          {!!this.state.questions && Object.keys(this.state.questions).map((key) => (
-            <div>
-              <h2>Topic: {key}</h2>
-              <hr></hr>
-              {this.state.questions[key].map((question) => (
-                <div>
-                  <h4>{question.question}</h4>
-                  {console.log(question.choices)}
-                  <CheckboxContainer checkboxes={question.choices}></CheckboxContainer>
-                </div>
-              ))}
-            </div>
-          ))}
+          <Questionnaire questions={this.state.questions}></Questionnaire>
         </Modal>
       </div>
     )
