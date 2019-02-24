@@ -9,6 +9,7 @@ export default class Questionnaire extends Component {
   render() {
     return (
       <div className='questionnaire'>
+        <h1>Interests Profiler</h1>
         {!!this.props.questions && Object.keys(this.props.questions).map((key) => (
           <div className='questionnaire-topic'>
             <h2>Topic: {key}</h2>

@@ -1,4 +1,4 @@
-$primaryColor: #f3f3f3;
+$primaryColor: #f06292;
 $backgroundColor: #282c34;
 
 * {
@@ -18,7 +18,6 @@ body, html {
 .App {
   display: flex;
   flex-direction: column;
-
 }
 
 .center {
@@ -46,6 +45,22 @@ body, html {
   }
 }
 
+input {
+  max-width: 150px;
+  margin-right: 20px;
+  line-height: 30px;
+  font-size: 16px;
+  padding: 0 5px;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+}
+
+.fluid-img {
+  max-width: 100%;
+  height: auto
+}
+
 .app-header {
   background-color: $backgroundColor;
   height: 100px;
@@ -56,6 +71,7 @@ body, html {
   justify-content: space-between;
   font-size: calc(10px + 2vmin);
   color: white;
+  box-shadow: 0 0 30px rgba(40, 44, 52, 0.5);
 }
 
 .messaging {
@@ -70,9 +86,22 @@ body, html {
     flex: 1;
 
     .conversation {
+      display: flex;
+      flex-direction: row;
       transition: all .2s ease;
-      padding: 20px;
+      padding: 20px 30px;
       cursor: pointer;
+      align-items: center;
+
+      .convo-info {
+        flex: 1;
+        width: 100%;
+      }
+      img {
+        max-width: 100px;
+        border-radius: 50%;
+        box-shadow: 2px 3px 25px rgba($backgroundColor, 0.1)
+      }
       &:hover {
         background: #f8f8f8;
       }
@@ -97,14 +126,17 @@ body, html {
   height: 100%;
   
   .messages {
+    padding: 20px;
+    max-height: 100%;
+    overflow: scroll;
     flex: 1;
   }
   .compose-message {
-    padding: 0 25px;
+    padding: 25px 25px 10px 25px;
+    box-shadow: 0 -5px 40px rgba($backgroundColor, 0.3);
     overflow: auto;
 
     form {
-      margin-top: 50px;
       width: 100%;
       display: flex;
       flex-direction: row;
@@ -122,11 +154,33 @@ body, html {
         flex: 1;
         box-shadow: 1px 2px 15px 0 rgba(lighten($backgroundColor, 10), 0.5);
         margin-right: 20px;
+        max-width: 100%;
         box-shadow: inset 0px 0px 8px rgba(lighten($backgroundColor, 10), 0.5);
       }
     }
   }
   
+  .chatMessage {
+    padding: 10px;
+    background: $primaryColor;
+    color: #f8f8f8;
+    border-radius: 10px;
+    max-width: 300px;
+  }
+  .chatMessage.local {
+    margin-left: auto;
+    background: #eaeaea;
+    color: $backgroundColor;
+  }
+  .message-text {
+    font-size: 19px;
+    line-height: 1.4;
+    margin-bottom: 15px;
+  }
+  .message-lang {
+    font-style: italic;
+    color: darken(#f8f8f8, 70)
+  }
 }
 
 .chatMessage {

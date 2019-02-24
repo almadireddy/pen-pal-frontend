@@ -1,4 +1,12 @@
 .questionnaire-modal {
+  @media (min-width: 800px) {
+    top: 75px;
+    width: 50%;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 75px;
+  }
+
   position: absolute;
   top: 75px;
   left: 75px;
@@ -12,6 +20,9 @@
   outline: none;
   padding: 50px; 
 
+  h1 {
+    margin-bottom: 50px;
+  }
   .questionnaire-topic {
     margin-bottom: 100px;
 

@@ -13,14 +13,21 @@ class App extends Component {
       doingQuestions: true,
       questions: null,
       messages: [],
-      targetLanguage: 'es'
+      targetLanguage: 'es',
+      user: "Al"
     }
 
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this)
     this.afterOpenModal = this.afterOpenModal.bind(this)
-    
+    this.handleNameChange = this.handleNameChange.bind(this)
+    this.handleLangChange = this.handleLangChange.bind(this);
     connect(message => {
+      // if (!!message.user && (message.user == this.state.user)) {
+      //   message['local'] = false
+      // } else {
+      //   message['local'] = true
+      // }
       this.setState((state) => {
         return {
           messages: [...state.messages, message]
@@ -46,6 +53,18 @@ class App extends Component {
     this.setState({questions: j})
   }
 
+  handleNameChange(event) {
+    this.setState({
+      user: event.target.value
+    })
+  }
+
+  handleLangChange(event) {
+    this.setState({
+      targetLanguage: event.target.value
+    })
+  }
+
   openModal() {
     this.setState({
       modalIsOpen: true
@@ -66,7 +85,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Header onClick={this.openModal}></Header>
+        <Header langChange={this.handleLangChange} nameChange={this.handleNameChange} onClick={this.openModal}></Header>
         <Modal
           className='questionnaire-modal'
           isOpen={this.state.modalIsOpen}

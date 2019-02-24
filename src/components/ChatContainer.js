@@ -23,6 +23,9 @@ export default class ChatContainer extends Component {
       lang: this.props.language,
       text: this.state.newMessage
     })
+    this.setState({
+      newMessage: ""
+    })
   }
 
   render() {
@@ -35,7 +38,7 @@ export default class ChatContainer extends Component {
         </div>
         <div className='compose-message'>
           <form id='composeForm' onSubmit={this.handleSubmit}>
-            <input value={this.state.newMessage} onChange={this.handleCompose}></input>
+            <input value={this.state.newMessage} onChange={this.handleCompose} placeholder="send your pen pal a message!"></input>
             <button form='composeForm' className='action-on-dark' type='submit' value="Send">Send</button>
           </form>
         </div>
