@@ -8,15 +8,17 @@ export default class Questionnaire extends Component {
 
   render() {
     return (
-      <div>
+      <div className='questionnaire'>
         {!!this.props.questions && Object.keys(this.props.questions).map((key) => (
-          <div>
+          <div className='questionnaire-topic'>
             <h2>Topic: {key}</h2>
             <hr></hr>
             {this.props.questions[key].map((question) => (
-              <div>
+              <div className='questionnaire-question'>
                 <h4>{question.question}</h4>
-                <CheckboxContainer checkboxes={question.choices}></CheckboxContainer>
+                <div className='questionnaire-options'>
+                  <CheckboxContainer checkboxes={question.choices}></CheckboxContainer>
+                </div>
               </div>
             ))}
           </div>

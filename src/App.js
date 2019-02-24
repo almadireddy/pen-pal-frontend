@@ -2,9 +2,8 @@ import React, { Component } from 'react';
 import './App.scss';
 import { connect } from './api';
 import Modal from 'react-modal';
-import CheckboxContainer from './components/CheckboxContainer';
 import Questionnaire from './components/Questionnaire';
-
+import Header from './components/Header'
 
 class App extends Component {
   constructor(props) {
@@ -60,21 +59,15 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <header className='app-header'>
-          <div>
-            <h1 className="app-title">Welcome to international sexting!</h1>
-          </div>
-          <div>
-            <button onClick={this.openModal} className='action-on-dark'>Questions</button>
-          </div>
-        </header>
+        <Header onClick={this.openModal}></Header>
         <Modal
+          className='questionnaire-modal'
           isOpen={this.state.modalIsOpen}
           onAfterOpen={this.afterOpenModal}
           onRequestClose={this.closeModal}
-          contentLabel="Example Modal"
-        >
+          contentLabel="Example Modal" >
           <Questionnaire questions={this.state.questions}></Questionnaire>
+          <button className='center action-on-dark' onClick={this.closeModal}>Save</button>
         </Modal>
       </div>
     )

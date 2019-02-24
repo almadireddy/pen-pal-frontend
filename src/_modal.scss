@@ -1,0 +1,42 @@
+.questionnaire-modal {
+  position: absolute;
+  top: 75px;
+  left: 75px;
+  right: 75px;
+  bottom: 75px;
+  box-shadow: 0 5px 35px rgba($backgroundColor, 0.3);
+  background: $backgroundColor;
+  color: #f8f8f8;
+  overflow: auto;
+  border-radius: 4px;
+  outline: none;
+  padding: 50px; 
+
+  .questionnaire-topic {
+    margin-bottom: 100px;
+
+    hr {
+      margin: 20px 0 30px 0;
+    }
+  }
+
+  .questionnaire-question {
+    margin-left: 15px;
+    margin-bottom: 0;
+
+    h4 {
+      margin-bottom: 10px;
+    }
+  }
+  .questionnaire-options {
+    margin-left: 15px;
+    display: flex;
+    height: 50px;
+    flex-direction: column;
+    margin-bottom: 35px;
+
+    label {
+      margin-bottom: 5px;
+    }
+  }
+}

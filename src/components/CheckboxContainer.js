@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import Checkbox from './Checkbox';
 
 class CheckboxContainer extends React.Component {
@@ -25,8 +24,8 @@ class CheckboxContainer extends React.Component {
         {
           this.props.checkboxes.map(item => (
             <label key={item.key}>
-              {item.name}
               <Checkbox name={item.name} checked={this.state.checkedItems.get(item.name)} onChange={this.handleChange} />
+              {item.name}
             </label>
           ))
         }
