@@ -72,6 +72,12 @@ input {
   font-size: calc(10px + 2vmin);
   color: white;
   box-shadow: 0 0 30px rgba(40, 44, 52, 0.5);
+
+  .inputs {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
 }
 
 .messaging {
@@ -186,6 +192,36 @@ input {
 .chatMessage {
   margin-bottom: 10px;
   width: 100%;
+}
+
+.lang-container {
+  font-size: 13px;
+  padding: 10px 8px 10px 14px;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  overflow: hidden;
+  position: relative;
+  display: inline-block;
+  margin-right: 20px;
+}
+
+.lang-container .select {
+  width: 120%;
+  // background:url('arrow.png') no-repeat;
+  background-position:80% center;
+}
+
+.lang-container .select select {
+  background: transparent;
+  line-height: 1;
+  border: 0;
+  padding: 0;
+  border-radius: 0;
+  width: 120%;
+  position: relative;
+  z-index: 10;
+  font-size: 1em;
 }
 
 @import 'modal'

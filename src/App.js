@@ -32,7 +32,10 @@ class App extends Component {
         }
       })
     }, (message) => {
-      console.log('message')
+      send({
+        preferredLanguage: this.state.language,
+        username: this.state.user
+      }, 'fred')
     }, (message) => {
       console.log(message)
       if (message.username !== this.state.user) {
