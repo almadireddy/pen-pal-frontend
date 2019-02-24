@@ -31,6 +31,7 @@ class App extends Component {
       //   message['local'] = true
       // }
       this.setState((state) => {
+        console.log(this.state.messages)
         return {
           messages: [...state.messages, message]
         }
